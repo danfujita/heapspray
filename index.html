@@ -46,6 +46,8 @@
 					<h3> DC Hack and Tell (Round 33, Tue Jun 7 2016)</h3>
 					<p>
 						<small>Created by <a href="http://hakim.se">Dan Fujita</a> / <a>@danfujita</a></small>
+						<small><li>Exploit writing tutorial part 11 : Heap Spraying Demystified https://www.corelan.be/index.php/2011/12/31/exploit-writing-tutorial-part-11-heap-spraying-demystified/  </li></small>
+
 					</p>
 				</section>
 				<section>
@@ -75,6 +77,10 @@
 				
 					</ul>
 				</section>
+					<section>
+    	<h2>WinExec: Example</h2>
+        <img src="assembly.png" class="heap">
+				</section>
 			
 								<section>
 					<h2>Shellcode</h2>
@@ -100,7 +106,6 @@ x6e\x68\x44\x44\x20\x20\x68\x35\x20\x2f\x41\x68\x31\x32\x33
 u6568%u6578%u6820%u6d63%u2e64 %ue089%ubb50%u2b5d%u7c86%ud3ff
                    					</code></pre>
 
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
 				</section>
     <section >
     	<h2>Sprayed Heap </h2>
@@ -113,29 +118,21 @@ u6568%u6578%u6820%u6d63%u2e64 %ue089%ubb50%u2b5d%u7c86%ud3ff
      	<section>
 					<h2>Buffer Overflow</h2>
 					<ul>
-				
+						<li>Use a vulnerable dynamic-link library file </li>
+						<li>regsvr32 example2.dll</li>
+						
 					</ul>
 				</section>
-
-				<section>
-					<h2>Use-After-Free</h2>
-					<ol>
-					</ol>
+  	            <section>
+    	<h2>Result </h2>
+        <img src="result.png" class="heap">
 				</section>
+				
 				<section>
 					<h2>Todo</h2>
 					<ul>
 						<li>Consider using JIT Spray to avoid Data Execution Prevention  </li>
 						<li>Heap Spray or JIT Spray for Windows 10 </li>
-					</ul>
-				</section>
-                  <section>
-					<h2>References</h2>
-					<ul>
-						<li>Shellcoding for Linux and Windows Tutorial http://www.vividmachines.com/shellcode/shellcode.html  </li>
-						<li>Exploit writing tutorial part 11 : Heap Spraying Demystified https://www.corelan.be/index.php/2011/12/31/exploit-writing-tutorial-part-11-heap-spraying-demystified/  </li>
-						<li> Part 9: Spraying the Heap [Chapter 2: Use-After-Free] – Finding a needle in a Haystack		http://www.fuzzysecurity.com/tutorials/expDev/11.html  </li>
-
 					</ul>
 				</section>
 				<section>
