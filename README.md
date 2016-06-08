@@ -1,8 +1,6 @@
 # Heapspray
 My talk for DC Hack and Tell (Round 33: NULL adhesive heresy) on Tue Jun 7.
 
-Exploits using shellcode is one of the most important topics in the current cyber security world. 
-
 This project describes how to create an additional administrator in order to attack a victim system.  I wrote my own version of shellcode for the Windows XP operation system and used it to exploit by using a technique called heap spray using the tutorial from Corelan.be.  It is a straightforward method and can be implemented in few days.
 
 ##Tutorials
